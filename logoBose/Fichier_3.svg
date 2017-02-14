@@ -10,51 +10,47 @@
                 stroke-dashoffset: 4500;
                 stroke: #BE0F49;
                 stroke-width: 5;
-                animation: dash1 5s linear forwards;
+                animation: dash1 7s linear forwards;
             }
             .path2{
                 stroke-dasharray: 4500;
                 stroke-dashoffset: 4500;
-                stroke: #BE0F49;
+                stroke: url(#MyGradient1);
                 stroke-width: 5;
-                animation: dash2 5s linear forwards;
+                animation: dash2 7s linear forwards;
             }
             .path3{
                 stroke-dasharray: 4500;
                 stroke-dashoffset: 4500;
                 stroke-width: 5;
-                stroke: #8323DC;
-                animation: dash3 5s linear forwards;
+                stroke: url(#MyGradient2);
+                animation: dash3 7s linear forwards;
             }
             .path4{
                 stroke-dasharray: 4500;
                 stroke-dashoffset: 4500;
                 stroke-width: 5;
                 stroke: #8323DC;
-                animation: dash4 5s linear forwards;
+                animation: dash4 7s linear forwards;
             }
 
             @keyframes dash1 {
                 to {
-                    fill : #BE0F49;
                     stroke-dashoffset: 0;
                 }
             }
             @keyframes dash2 {
                 to {
-                    fill:url(#MyGradient1);
                     stroke-dashoffset: 0;
                 }
             }
             @keyframes dash3 {
                 to {
-                    fill:url(#MyGradient2);
                     stroke-dashoffset: 0;
                 }
             }
             @keyframes dash4 {
                 to {
-                    fill : #8323DC;
                     stroke-dashoffset: 0;
                 }
             }
