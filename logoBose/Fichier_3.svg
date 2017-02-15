@@ -2,16 +2,21 @@
     <defs>
         <style>.cls-1{fill:#fff;}</style>
         <style>
+            svg{
+                background: url(#MyGradient);
+            }
+
             .path{
                 fill : transparent;
             }
+
             .path{
-                stroke-dasharray: 4500;
-                stroke-dashoffset: 4500;
-                stroke: #BE0F49;
+                stroke-dasharray: 3000;
+                stroke-dashoffset: 3000;
                 stroke-width: 5;
-                animation: dash 7s linear forwards;
-                stroke: url(#MyGradient);
+                animation: dash 4s linear;
+                animation-fill-mode: forwards;
+                stroke: #fff;
             }
 
             @keyframes dash {
@@ -29,8 +34,8 @@
         </style>
         <defs>
             <linearGradient id="MyGradient" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="30%" stop-color="#BE0F49" />
-                <stop offset="70%" stop-color="#921EB8" />
+                <stop offset="30%" stop-color="#fff" />
+                <stop offset="70%" stop-color="#fff" />
             </linearGradient>
         </defs>
         /*<defs>
