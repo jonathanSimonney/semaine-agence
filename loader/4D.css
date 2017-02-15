@@ -1,0 +1,228 @@
+body {
+  margin: 0;
+  overflow: hidden;
+background-color: white;
+}
+
+.centered {
+  position: absolute;
+  margin: auto;
+  top:0; bottom:0; left:0; right:0;
+}
+
+.face {
+  width: 150px;
+  height: 150px;
+  background-color: #EBEBEB;
+  border-radius: 50%;
+  -webkit-mask: url(bose-rond.png) top left / cover;
+  mask: url(bose-rond.png) top left / cover;
+}
+
+.back {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: -webkit-linear-gradient(top, #be0f49 0%, #8323dc 40%, #be0f49 50%, #8323dc 60%, #be0f49 70%, #8323dc 100%);
+  background: linear-gradient(top, #FF694C 0%, #F15378 30%, #E053D5 40%, #B54BEB 60%, #5B86EE 70%, #00EEEB 100%);
+  
+  -webkit-filter: saturate(0.5);
+  filter: saturate(0.5);
+  -webkit-transform: scale(1) rotate(-25deg);
+  transform: scale(1) rotate(-25deg);
+  -webkit-animation: spin 0.3s infinite linear alternate;
+  animation: spin 0.3s infinite linear alternate;
+}
+
+.headphones {
+  width: 320px;
+  height: 120px;
+  -webkit-animation: bounce 0.3s linear infinite alternate;
+  animation: bounce 0.3s linear infinite alternate;
+}
+
+.earmuff {
+  width: 20px;
+  height: 120px;
+  background: #561d73;
+  border-radius: 50% 10px 10px 50%;
+  border-right: #561d73 solid 40px;
+  
+}
+.earmuff:nth-child(2){
+  float: right;
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.band {
+  width: 320px;
+  height: 350px;
+  border-radius: 50%;
+  background-color: transparent;
+  border-top: #be0f49 solid 40px;
+  z-index: -99;
+}
+
+.music {
+  width: 450px;
+  height: 50px;
+}
+.group1{
+  float: left;
+}
+.group2{
+  float: right;
+  -webkit-transform: rotate(180deg);
+}
+.wave {
+  display: inline-block;
+  width: 10px;
+  height: 50px;
+  opacity: 0.2;
+  background-color: #5C32D4;
+  -webkit-animation: wave 0.3s 0.2s linear infinite alternate;
+  animation: wave 0.3s 0.2s linear infinite alternate;
+}
+.wave:nth-child(2) {
+  -webkit-animation: wave 0.3s 0.1s linear infinite alternate;
+  animation: wave 0.3s 0.1s linear infinite alternate;
+}
+.wave:nth-child(3) {
+  -webkit-animation: wave 0.3s linear infinite alternate;
+  animation: wave 0.3s linear infinite alternate;
+}
+
+
+@keyframes spin {
+  to {
+    -webkit-filter: saturate(1);
+    -webkit-transform: scale(1.05) rotate(-25deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  to {
+    -webkit-filter: saturate(1);
+    -webkit-transform: scale(1.05) rotate(-25deg);
+  }
+}
+
+@keyframes bounce {
+  to {
+    -webkit-transform: scale(1.05);
+  }
+}
+
+@-webkit-keyframes bounce {
+  to {
+    -webkit-transform: scale(1.05);
+  }
+}
+
+@-webkit-keyframes wave {
+  to {
+    opacity: 1;
+    -webkit-transform: scaleY(2);
+  }
+}
+
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,900italic,900,700italic,700,500italic,500,400italic,300italic,300,100italic,100);
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+h1, p, h2, h3, h4, ul, li, div {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: Roboto;
+}
+
+.loading-page {
+  background: #fff;
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.loading-page .counter {
+  text-align: center;
+}
+
+.loading-page .counter h1 {
+  color: #555555;
+  font-size: medium;
+  margin-top: -20px;
+    padding-top: 270px;
+    font-family: Questrial;
+    
+}
+
+@font-face {
+    font-family: 'Questrial'; 
+    src : url 'Questrail-Regular.otf'
+}
+
+
+
+.loading-page .counter hr {
+  background: #fff;
+  border: none;
+  height: 1px;
+}
+.loading-page .counter {
+  position: relative;
+  width: 200px;
+}
+.loading-page .counter h1.abs {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.loading-page .counter .color {
+  width: 0px;
+  overflow: hidden;
+  color: #f60d54;
+}
+
+@-webkit-keyframes flash {
+    0% { opacity: 1; }
+    25% {  opacity:.2;}
+    50% { opacity: 0; }
+    75% { opacity: .2; }
+    100% { opacity: 1; }
+}
+
+
+.flashit{
+    -webkit-animation: flash linear 2s infinite;
+    animation: flash linear 1.5s infinite;
+    font-family:questrial, sans-serif;
+    font-size: 15px;
+}
+
+#centerme{
+    width: 100%;
+    position: absolute;
+    bottom: 10%;
+    text-align: center;
+}
