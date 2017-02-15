@@ -5,53 +5,19 @@
             .path{
                 fill : transparent;
             }
-            .path1{
+            .path{
                 stroke-dasharray: 4500;
                 stroke-dashoffset: 4500;
                 stroke: #BE0F49;
                 stroke-width: 5;
-                animation: dash1 7s linear forwards;
-            }
-            .path2{
-                stroke-dasharray: 4500;
-                stroke-dashoffset: 4500;
-                stroke: url(#MyGradient1);
-                stroke-width: 5;
-                animation: dash2 7s linear forwards;
-            }
-            .path3{
-                stroke-dasharray: 4500;
-                stroke-dashoffset: 4500;
-                stroke-width: 5;
-                stroke: url(#MyGradient2);
-                animation: dash3 7s linear forwards;
-            }
-            .path4{
-                stroke-dasharray: 4500;
-                stroke-dashoffset: 4500;
-                stroke-width: 5;
-                stroke: #8323DC;
-                animation: dash4 7s linear forwards;
+                animation: dash 7s linear forwards;
+                stroke: url(#MyGradient);
             }
 
-            @keyframes dash1 {
+            @keyframes dash {
                 to {
                     stroke-dashoffset: 0;
-                }
-            }
-            @keyframes dash2 {
-                to {
-                    stroke-dashoffset: 0;
-                }
-            }
-            @keyframes dash3 {
-                to {
-                    stroke-dashoffset: 0;
-                }
-            }
-            @keyframes dash4 {
-                to {
-                    stroke-dashoffset: 0;
+                    fill: url(#MyGradient);
                 }
             }
 
@@ -62,17 +28,17 @@
 
         </style>
         <defs>
-            <linearGradient id="MyGradient1">
+            <linearGradient id="MyGradient" x1="0" x2="0" y1="0" y2="1">
                 <stop offset="30%" stop-color="#BE0F49" />
                 <stop offset="70%" stop-color="#921EB8" />
             </linearGradient>
         </defs>
-        <defs>
+        /*<defs>
             <linearGradient id="MyGradient2">
                 <stop offset="40%" stop-color="#921EB8" />
                 <stop offset="60%" stop-color="#8323DC" />
             </linearGradient>
-        </defs>
+        </defs>*/
 
     </defs>
     <title>Fichier 3</title>
