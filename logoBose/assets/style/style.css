@@ -22,7 +22,7 @@ body {
 
 @keyframes enlarging {
     100%{
-        transform: scale(90);
+        transform: scale(120);
     }
 }
 
