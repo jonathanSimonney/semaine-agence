@@ -1,0 +1,55 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background: linear-gradient(to bottom, #BE0F49 30%, #921EB8 70%) no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+#myLogoContainer{
+    width: 40%;
+    height: 10%;
+}
+
+.enlarging {
+    animation: enlarging 1s;
+}
+
+@keyframes enlarging {
+    100%{
+        transform: scale(90);
+    }
+}
+
+svg {
+    background: url(#MyGradient);
+}
+
+.path {
+    fill: transparent;
+}
+
+.path {
+    stroke-dasharray: 3000;
+    stroke-dashoffset: 3000;
+    stroke-width: 5;
+    animation: dash 4s linear;
+    animation-fill-mode: forwards;
+    stroke: #fff;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+        fill: url(#MyGradient);
+    }
+}
+
+.fill_letter_none {
+    fill: transparent;
+}

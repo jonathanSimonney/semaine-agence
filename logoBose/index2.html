@@ -2,88 +2,9 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Title</title>
-        <style>
-            html {
-                height: 100%;
-            }
-
-            body {
-                height: 100%;
-                background: linear-gradient(to bottom, #BE0F49 30%, #921EB8 70%) no-repeat;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                overflow-x: hidden;
-            }
-
-            #myLogoContainer{
-                width: 40%;
-                height: 10%;
-            }
-
-            .enlarging {
-                animation: enlarging 1s;
-            }
-
-            @keyframes enlarging {
-                100%{
-                    transform: scale(90);
-                }
-            }
-
-
-            svg {
-                background: url(#MyGradient);
-            }
-
-            .path {
-                fill: transparent;
-            }
-
-            .path {
-                stroke-dasharray: 3000;
-                stroke-dashoffset: 3000;
-                stroke-width: 5;
-                animation: dash 4s linear;
-                animation-fill-mode: forwards;
-                stroke: #fff;
-            }
-
-            @keyframes dash {
-                to {
-                    stroke-dashoffset: 0;
-                    fill: url(#MyGradient);
-                }
-            }
-
-            .fill_letter_none {
-                fill: transparent;
-            }
-        </style>
-
-        <script>
-            function redirect(event){
-                if (event.target === document.querySelector('#myLogoContainer')){
-                    console.log('you went to another part on the same page!');
-                }
-            }
-
-            function testFunction(currentElement) {
-                if (currentElement.parentNode.className.search(' enlarging') === -1){
-                    currentElement.parentNode.className += ' enlarging';
-                    document.querySelector('.enlarging').addEventListener('animationend', function(e){
-                        redirect(e);
-                    });
-                }
-            }
-
-            window.onload = function () {
-                document.querySelector('#myLogo').addEventListener('animationend', function(e){
-                    testFunction(this);
-                });
-            }
-        </script>
+        <title>Bose and dance</title>
+        <link rel="stylesheet" href="assets/style.css">
+        <script src="assets/script.js"></script>
     </head>
     <body>
         <div class="animated svgContainer" id='myLogoContainer'>
