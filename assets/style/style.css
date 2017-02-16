@@ -1,7 +1,19 @@
 body {
   margin: 0;
   overflow: hidden;
-background-color: white;
+  background-color: white;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  font-family: Roboto;
+}
+
+.pseudoBody{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width:100%;
+  height:100%;
 }
 
 .centered {
@@ -15,8 +27,8 @@ background-color: white;
   height: 150px;
   background-color: #EBEBEB;
   border-radius: 50%;
-  -webkit-mask: url(bose-rond.png) top left / cover;
-  mask: url(bose-rond.png) top left / cover;
+  -webkit-mask: url(images/bose-rond.png) top left / cover;
+  mask: url(images/bose-rond.png) top left / cover;
 }
 
 .back {
@@ -139,17 +151,6 @@ h1, p, h2, h3, h4, ul, li, div {
   padding: 0;
 }
 
-body {
-  padding: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  font-family: Roboto;
-}
-
 .loading-page {
   background: #fff;
   width: 100vw;
@@ -172,9 +173,8 @@ body {
   color: #555555;
   font-size: medium;
   margin-top: -20px;
-    padding-top: 270px;
-    font-family: Questrial;
-    
+  padding-top: 270px;
+  font-family: Questrial;
 }
 
 @font-face {
