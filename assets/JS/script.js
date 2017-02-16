@@ -1,10 +1,35 @@
-function redirectPage2(){
+function addMenu(){
+    if ($('nav')[0] === undefined){
+        fillThings('assets/views/menu.html', $('body')[0], function (){}, false);
+        $('a').each(
+            $(this).click(function(event){
+                event.preventDefault();
+                window["loadPage"+event.target.className]();
+            })
+        );
+    }
+}
+
+function suppressMenu(){
+    if ($('nav')[0] != undefined){
+        $('nav')[0].parentNode.removeChild($('nav')[0]);
+    }
+}
+
+function loadPage1(){
+    fillThings('assets/views/page1.html',$('body'), function(){
+        loadPage();
+        $('.pseudoBody')[0].className = 'pseudoBody page1';
+    });
+    suppressMenu();
+}
+
+function loadPage2(){
+    $('.pseudoBody')[0].className = 'pseudoBody page2';
     fillThings('assets/views/videoTag.html', $('.audioContainer')[0]);
 
     fillThings('assets/views/page2.html', $('.pseudoBody')[0], function(){
-        $('.pseudoBody').removeClass('page1');
-        $('.pseudoBody').addClass('page2');
-        fillThings('assets/style/images/logo.svg', document.querySelector('#myLogoContainer'), function(){
+        fillThings('assets/style/images/logo.svg', $('#myLogoContainer')[0], function(){
             document.querySelector('#myLogo').addEventListener('animationend', function(e){
                 testFunction(this);
             });
@@ -12,28 +37,33 @@ function redirectPage2(){
     });
 }
 
-function createSubPage(numberPage){
-    var subPage = document.createElement('div');
-    $(subPage).addClass('subPage'+numberPage);
-    return subPage;
+function loadPage3(){
+    $('.pseudoBody')[0].className = 'pseudoBody page3';
+
+    fillThings('assets/views/page3.html', $('.pseudoBody')[0], function(){
+        createRandomNote(4, $('.pseudoBody')[0]);
+        addMenu();
+    });
 }
 
-function redirectPage3(){
-    $('.page2').addClass('page3');
-    $('.page2').removeClass('page2');
-    $('.pseudoBody').html('');
-
-    for (var i = 1; i != 5; i++){
-        var subpage = createSubPage(i);
-        $('.pseudoBody')[0].appendChild(subpage);
-
-        fillThings('assets/views/subPage'+i+'.html', subpage);
-    }
+function loadPage4(){
+    $('.pseudoBody')[0].className = 'pseudoBody page4';
+    fillThings('assets/views/page4.html', $('.pseudoBody')[0])
 }
 
-function redirect(event){
+function loadPage5(){
+    $('.pseudoBody')[0].className = 'pseudoBody page5';
+    fillThings('assets/views/page5.html', $('.pseudoBody')[0])
+}
+
+function loadPage6(){
+    $('.pseudoBody')[0].className = 'pseudoBody page6';
+    fillThings('assets/views/page6.html', $('.pseudoBody')[0])
+}
+
+function load(event){
     if (event.target === document.querySelector('#myLogoContainer')){
-        redirectPage3();
+        loadPage3();
     }
 }
 
@@ -42,7 +72,6 @@ function getRandomNumberInLength(length){
 }
 
 function createRandomNote(number, parentElement){
-    console.log(parentElement);
     for (var i = 0; i != number; i++){
         var noteContainer = document.createElement('span');
         noteContainer.className = 'musicNote';
@@ -67,7 +96,7 @@ function testFunction(currentElement) {
     if (currentElement.parentNode.className.search(' enlarging') === -1){
         currentElement.parentNode.className += ' enlarging';
         document.querySelector('.enlarging').addEventListener('animationend', function(e){
-            redirect(e);
+            load(e);
         });
     }
 }
@@ -85,19 +114,23 @@ function loadPage(){
 
         if(counter == 101) {
             clearInterval(i);
-            redirectPage2();
+            loadPage2();
         }
     }, 50);
 }
 
-function fillThings(url, container, additionalInstructions) {
+function fillThings(url, container, additionalInstructions, removeContent) {
     $(function() {
         $.ajax({ type: 'GET',
             url: url,
             dataType: 'text',
             success : function(text)
             {
-                $(container).html(text);
+                if (removeContent != false){
+                    $(container).html(text);
+                }else{
+                    $(container).html($(container).html()+text);
+                }
 
                 if (additionalInstructions !== undefined){
                     additionalInstructions();
@@ -108,5 +141,5 @@ function fillThings(url, container, additionalInstructions) {
 }
 
 $(function() {
-    loadPage();
+    loadPage1();
 });
