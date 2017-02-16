@@ -1,15 +1,29 @@
-function applyGradientToText(text){
-    return ('<svg id=\'myLogo\' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1239.95 150.9">'+
-        '<defs>'+
-        '<defs>'+
-        '<linearGradient id="MyGradient" x1="0" x2="0" y1="0" y2="1">'+
-        '<stop offset="30%" stop-color="#fff"/>'+
-        '<stop offset="70%" stop-color="#fff"/>'+
-        '</linearGradient>'+
-        '</defs>'+
-        '</defs><text fill="url(#MyGradient)">'+text+'</text></svg>');
+function getRandomStringInLength(length){
+    return Math.floor(Math.random()*length);
+}
+
+function createRandomNote(number, parentElement){
+    for (var i = 0; i != number; i++){
+        var noteContainer = document.createElement('span');
+        noteContainer.className = 'musicNote';
+
+        if (Math.random() < 0.5){
+            noteContainer.className += ' musicAnimationLeft'
+        }else{
+            noteContainer.className += ' musicAnimationRight'
+        }
+
+        $(noteContainer).html('<i class="fa fa-music" aria-hidden="true"></i>');
+        $(noteContainer).css({
+            top : getRandomStringInLength($(parentElement).height()),
+            left : getRandomStringInLength($(parentElement).width())
+        });
+
+        console.log(parentElement);
+         parentElement.appendChild(noteContainer);
+    }
 }
 
 $(function(){
-    $('.textPurpleGradient').html(applyGradientToText($('.textPurpleGradient').html()));
+    createRandomNote(4, $('body')[0]);
 });
