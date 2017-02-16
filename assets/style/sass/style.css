@@ -14,6 +14,38 @@ body {
   width: 100%;
   height: 100%; }
 
+@keyframes musicAnimationLeft {
+  25% {
+    transform: rotate(-45deg); }
+  50% {
+    transform: rotate(0deg); }
+  75% {
+    transform: rotate(45deg); } }
+@keyframes musicAnimationRight {
+  25% {
+    transform: rotate(45deg); }
+  50% {
+    transform: rotate(0deg); }
+  75% {
+    transform: rotate(-45deg); } }
+.musicAnimationRight {
+  animation: musicAnimationRight infinite 2s; }
+
+.musicAnimationLeft {
+  animation: musicAnimationLeft infinite 2s; }
+
+/*animations*/
+h2 {
+  font-size: 7.5vh; }
+
+.musicNote {
+  transform-origin: center;
+  z-index: -1;
+  position: absolute;
+  color: #be0f49;
+  opacity: 0.15;
+  font-size: 4vh; }
+
 .pseudoBody.page1 {
   @import url(https://fonts.googleapis.com/css?family=Roboto:400,900italic,900,700italic,700,500italic,500,400italic,300italic,300,100italic,100); }
   .pseudoBody.page1 .centered {
@@ -181,7 +213,7 @@ body {
     width: 40%;
     height: 10%; }
   .pseudoBody.page2 .enlarging {
-    animation: enlarging 1s; }
+    animation: enlarging 1s forwards; }
 @keyframes enlarging {
   100% {
     transform: scale(120); } }
@@ -202,5 +234,82 @@ body {
     fill: url(#MyGradient); } }
   .pseudoBody.page2 .fill_letter_none {
     fill: transparent; }
+
+.pseudoBody.page3 {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  margin-left: 5vw;
+  /* beginning of properties of first column*/
+  /* end of properties of first column*/
+  /*beginning of properties of second column*/ }
+  .pseudoBody.page3 .centeredChilds {
+    justify-content: center; }
+  .pseudoBody.page3 .crossAxisCentered {
+    align-items: center; }
+  .pseudoBody.page3 .textPurpleGradient {
+    background: -webkit-linear-gradient(left, #BE0F49, #921EB8);
+    background: linear-gradient(left, #BE0F49, #921EB8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; }
+  .pseudoBody.page3 .container {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: row; }
+  .pseudoBody.page3 .container > div {
+    display: flex;
+    height: 85%; }
+  .pseudoBody.page3 .container > div:nth-child(1) {
+    width: 30%;
+    align-items: center; }
+  .pseudoBody.page3 .container > div:nth-child(1) > div {
+    width: 52%;
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    position: relative; }
+  .pseudoBody.page3 .container > div:nth-child(1) > div > div {
+    width: 100%;
+    height: 100%; }
+  .pseudoBody.page3 .container > div:nth-child(1) > div > div > img {
+    width: 100%;
+    height: 100%;
+    display: block; }
+  .pseudoBody.page3 .container > div:nth-child(1) > div > div > div {
+    width: 35%;
+    height: 30%;
+    position: absolute;
+    bottom: -30px;
+    left: -30px; }
+  .pseudoBody.page3 .partialBorder {
+    border-bottom: 10px #f5dbe4 solid;
+    border-left: 10px #f5dbe4 solid; }
+  .pseudoBody.page3 .subTitle {
+    font-size: 4vh;
+    margin-bottom: 5vh; }
+  .pseudoBody.page3 .container > div:nth-child(2) {
+    flex-direction: column;
+    justify-content: space-between;
+    width: 70%;
+    margin-left: 3%; }
+  .pseudoBody.page3 .container > div:nth-child(2) > h2 {
+    position: relative;
+    margin: 0;
+    align-self: center; }
+  .pseudoBody.page3 .container > div:nth-child(2) > h2 > div {
+    width: 50vw;
+    overflow-x: hidden;
+    background: -webkit-linear-gradient(left, rgba(188, 16, 76, 0), rgba(188, 16, 76, 0.2));
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%; }
+  .pseudoBody.page3 .container > div:nth-child(2) > p {
+    display: flex;
+    flex-direction: column;
+    line-height: 5vh;
+    font-size: 3vh; }
 
 /*# sourceMappingURL=style.css.map */
