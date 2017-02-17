@@ -1,6 +1,12 @@
+@font-face {
+  font-family: 'gotham';
+  src: url("GOTHAM-LIGHT_0.OTF"); }
+@font-face {
+  font-family: 'gotham';
+  src: url("GOTHAM-THIN.TTF"); }
 body {
   margin: 0;
-  overflow: hidden;
+  overflow-x: hidden;
   background-color: white;
   padding: 0;
   width: 100vw;
@@ -277,14 +283,14 @@ h2 {
   /*text-align: center;*/
   margin: 10% 15%; }
 .pseudoBody.page3 .page {
-  width: 1000px;
-  height: 500px;
+  width: 70vw;
+  height: 60vh;
   border-radius: 2px;
   display: flex;
   flex-direction: column;
   justify-content: space-between; }
 .pseudoBody.page3 .page .page_content {
-  width: 100%;
+  width: 70vw;
   height: 350px;
   display: flex;
   justify-content: space-between; }
@@ -318,5 +324,27 @@ h2 {
   position: relative; }
 .pseudoBody.page3 .slider .content .page {
   float: left; }
+
+.pseudoBody.page4 img {
+  width: 100%;
+  height: 400%; }
+
+.pseudoBody.page5 #title {
+  text-align: center;
+  font-family: 'gotham';
+  color: #7bb8f1; }
+.pseudoBody.page5 .para p {
+  width: 100%;
+  margin-left: 29%;
+  width: 43%;
+  font-family: 'gotham'; }
+.pseudoBody.page5 .img {
+  width: 450px;
+  text-align: center;
+  display: inline-block; }
+.pseudoBody.page5 .color {
+  color: #7BB8f1; }
+.pseudoBody.page5 .div-img {
+  text-align: center; }
 
 /*# sourceMappingURL=style.css.map */

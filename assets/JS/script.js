@@ -6,7 +6,6 @@ function addMenu(){
             $(this).click(function(event){
                 event.preventDefault();
                 if (!isNaN(event.target.className) && event.target.className != undefined && event.target.className != ''){
-                    alert(event.target.className);
                     window["loadPage"+event.target.className]();
                 }
             })
@@ -127,12 +126,13 @@ function fillThings(url, container, additionalInstructions, removeContent) {
         $.ajax({ type: 'GET',
             url: url,
             dataType: 'text',
-            success : function(text)
+            success : function(butWhy)
             {
+                console.log(url, butWhy);
                 if (removeContent != false){
-                    $(container).html(text);
+                    $(container).html(butWhy);
                 }else{
-                    $(container).html($(container).html()+text);
+                    $(container).html($(container).html()+butWhy);
                 }
 
                 if (additionalInstructions !== undefined){
