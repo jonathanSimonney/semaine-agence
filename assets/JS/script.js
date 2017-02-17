@@ -1,10 +1,14 @@
 function addMenu(){
     if ($('nav')[0] === undefined){
         fillThings('assets/views/menu.html', $('body')[0], function (){}, false);
+
         $('a').each(
             $(this).click(function(event){
                 event.preventDefault();
-                window["loadPage"+event.target.className]();
+                if (!isNaN(event.target.className) && event.target.className != undefined && event.target.className != ''){
+                    alert(event.target.className);
+                    window["loadPage"+event.target.className]();
+                }
             })
         );
     }
@@ -48,17 +52,16 @@ function loadPage3(){
 
 function loadPage4(){
     $('.pseudoBody')[0].className = 'pseudoBody page4';
-    fillThings('assets/views/page4.html', $('.pseudoBody')[0])
+    fillThings('assets/views/page4.html', $('.pseudoBody')[0], function(){
+        addMenu();
+    })
 }
 
 function loadPage5(){
     $('.pseudoBody')[0].className = 'pseudoBody page5';
-    fillThings('assets/views/page5.html', $('.pseudoBody')[0])
-}
-
-function loadPage6(){
-    $('.pseudoBody')[0].className = 'pseudoBody page6';
-    fillThings('assets/views/page6.html', $('.pseudoBody')[0])
+    fillThings('assets/views/page5.html', $('.pseudoBody')[0], function(){
+        addMenu();
+    })
 }
 
 function load(event){
