@@ -329,22 +329,24 @@ h2 {
   width: 100%;
   height: 400%; }
 
-.pseudoBody.page5 #title {
-  text-align: center;
-  font-family: 'gotham';
-  color: #7bb8f1; }
-.pseudoBody.page5 .para p {
-  width: 100%;
-  margin-left: 29%;
-  width: 43%;
-  font-family: 'gotham'; }
-.pseudoBody.page5 .img {
-  width: 450px;
-  text-align: center;
-  display: inline-block; }
-.pseudoBody.page5 .color {
-  color: #7BB8f1; }
-.pseudoBody.page5 .div-img {
-  text-align: center; }
+.pseudoBody.page5 {
+  margin-top: 40px; }
+  .pseudoBody.page5 #title {
+    text-align: center;
+    font-family: 'gotham';
+    color: #7bb8f1; }
+  .pseudoBody.page5 .para p {
+    width: 100%;
+    margin-left: 29%;
+    width: 43%;
+    font-family: 'gotham'; }
+  .pseudoBody.page5 .img {
+    width: 450px;
+    text-align: center;
+    display: inline-block; }
+  .pseudoBody.page5 .color {
+    color: #7BB8f1; }
+  .pseudoBody.page5 .div-img {
+    text-align: center; }
 
 /*# sourceMappingURL=style.css.map */
