@@ -1,0 +1,494 @@
+$menuWidth : 82%;
+$menuHeight: 7vh;
+$logoWidth : 13vw;
+$menuBackgroundColor: #3c3c3c;
+$menuColor:white;
+$siteColor:#be0f49;
+$comptaBgColor: #f1f1f1;
+
+@mixin evenlySpacedContent($direction){
+  display:flex;
+  flex-direction:$direction;
+  justify-content:space-between;
+}
+
+@mixin centeredContent($direction){
+  display:flex;
+  flex-direction:$direction;
+  justify-content:center;
+}
+
+@font-face {
+  font-family: 'gotham';
+  src: url('GOTHAM-LIGHT_0.OTF');
+
+}
+
+@font-face {
+  font-family: 'gotham';
+  src: url('GOTHAM-THIN.TTF');
+
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background-color: white;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  font-family: Roboto;
+}
+
+.pseudoBody{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width:100%;
+  height:100%;
+}
+
+.colored{
+  color: $siteColor;
+}
+
+.menu{
+  position: fixed;
+  top:0;
+  left:0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width:100%;
+  height:$menuHeight;
+  background-color: $menuBackgroundColor;
+
+  &>div{
+    width:$menuWidth;
+    height:100%;
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items:center;
+
+    img{
+      width:$logoWidth;
+      height:60%;
+    }
+
+    &>div{
+      width:33vw;
+      @include evenlySpacedContent(row);
+
+      a{
+        color:$menuColor;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.textPurpleGradient{
+  background: -webkit-linear-gradient(left, #BE0F49, #921EB8);
+  background: linear-gradient(left, #BE0F49, #921EB8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes musicAnimationLeft{
+  25%{transform: rotate(-45deg);}
+  50%{transform: rotate(0deg);}
+  75%{transform: rotate(45deg);}
+}
+
+@keyframes musicAnimationRight{
+  25%{transform: rotate(45deg);}
+  50%{transform: rotate(0deg);}
+  75%{transform: rotate(-45deg);}
+}
+
+.musicAnimationRight{
+  animation: musicAnimationRight infinite 2s;
+}
+
+.musicAnimationLeft{
+  animation: musicAnimationLeft infinite 2s;
+}
+
+
+/*animations*/
+
+h2{
+  font-size: 7.5vh;
+}
+
+.musicNote{
+  transform-origin: center;
+  z-index: -1;
+  position: absolute;
+  color: #be0f49;
+  opacity:0.15;
+  font-size: 4vh;
+}
+
+.pseudoBody.page1{
+  .centered {
+    position: absolute;
+    margin: auto;
+    top:0; bottom:0; left:0; right:0;
+  }
+
+  .face {
+    width: 150px;
+    height: 150px;
+    background-color: #EBEBEB;
+    border-radius: 50%;
+    -webkit-mask: url(images/bose-rond.png) top left / cover;
+    mask: url(images/bose-rond.png) top left / cover;
+  }
+
+  .back {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: -webkit-linear-gradient(top, #be0f49 0%, #8323dc 40%, #be0f49 50%, #8323dc 60%, #be0f49 70%, #8323dc 100%);
+    background: linear-gradient(top, #FF694C 0%, #F15378 30%, #E053D5 40%, #B54BEB 60%, #5B86EE 70%, #00EEEB 100%);
+
+    -webkit-filter: saturate(0.5);
+    filter: saturate(0.5);
+    -webkit-transform: scale(1) rotate(-25deg);
+    transform: scale(1) rotate(-25deg);
+    -webkit-animation: spin 0.3s infinite linear alternate;
+    animation: spin 0.3s infinite linear alternate;
+  }
+
+  .headphones {
+    width: 320px;
+    height: 120px;
+    -webkit-animation: bounce 0.3s linear infinite alternate;
+    animation: bounce 0.3s linear infinite alternate;
+  }
+
+  .earmuff {
+    width: 20px;
+    height: 120px;
+    background: #561d73;
+    border-radius: 50% 10px 10px 50%;
+    border-right: #561d73 solid 40px;
+
+  }
+  .earmuff:nth-child(2){
+    float: right;
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+
+  .band {
+    width: 320px;
+    height: 350px;
+    border-radius: 50%;
+    background-color: transparent;
+    border-top: #be0f49 solid 40px;
+    z-index: -99;
+  }
+
+  .music {
+    width: 450px;
+    height: 50px;
+  }
+  .group1{
+    float: left;
+  }
+  .group2{
+    float: right;
+    -webkit-transform: rotate(180deg);
+  }
+  .wave {
+    display: inline-block;
+    width: 10px;
+    height: 50px;
+    opacity: 0.2;
+    background-color: #5C32D4;
+    -webkit-animation: wave 0.3s 0.2s linear infinite alternate;
+    animation: wave 0.3s 0.2s linear infinite alternate;
+  }
+  .wave:nth-child(2) {
+    -webkit-animation: wave 0.3s 0.1s linear infinite alternate;
+    animation: wave 0.3s 0.1s linear infinite alternate;
+  }
+  .wave:nth-child(3) {
+    -webkit-animation: wave 0.3s linear infinite alternate;
+    animation: wave 0.3s linear infinite alternate;
+  }
+
+
+  @keyframes spin {
+    to {
+      -webkit-filter: saturate(1);
+      -webkit-transform: scale(1.05) rotate(-25deg);
+    }
+  }
+
+  @-webkit-keyframes spin {
+    to {
+      -webkit-filter: saturate(1);
+      -webkit-transform: scale(1.05) rotate(-25deg);
+    }
+  }
+
+  @keyframes bounce {
+    to {
+      -webkit-transform: scale(1.05);
+    }
+  }
+
+  @-webkit-keyframes bounce {
+    to {
+      -webkit-transform: scale(1.05);
+    }
+  }
+
+  @-webkit-keyframes wave {
+    to {
+      opacity: 1;
+      -webkit-transform: scaleY(2);
+    }
+  }
+
+
+  @import url(https://fonts.googleapis.com/css?family=Roboto:400,900italic,900,700italic,700,500italic,500,400italic,300italic,300,100italic,100);
+  * {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  h1, p, h2, h3, h4, ul, li, div {
+    margin: 0;
+    padding: 0;
+  }
+
+  .loading-page {
+    background: #fff;
+    width: 100vw;
+    height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  .loading-page .counter {
+    text-align: center;
+  }
+
+  .loading-page .counter h1 {
+    color: #555555;
+    font-size: medium;
+    margin-top: -20px;
+    padding-top: 270px;
+    font-family: Questrial;
+  }
+
+  @font-face {
+    font-family: 'Questrial';
+    src : url 'Questrail-Regular.otf'
+  }
+
+
+
+  .loading-page .counter hr {
+    background: #fff;
+    border: none;
+    height: 1px;
+  }
+  .loading-page .counter {
+    position: relative;
+    width: 200px;
+  }
+  .loading-page .counter h1.abs {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  .loading-page .counter .color {
+    width: 0px;
+    overflow: hidden;
+    color: #f60d54;
+  }
+
+  @-webkit-keyframes flash {
+    0% { opacity: 1; }
+    25% {  opacity:.2;}
+    50% { opacity: 0; }
+    75% { opacity: .2; }
+    100% { opacity: 1; }
+  }
+
+
+  .flashit{
+    -webkit-animation: flash linear 2s infinite;
+    animation: flash linear 1.5s infinite;
+    font-family:questrial, sans-serif;
+    font-size: 15px;
+  }
+
+  #centerme{
+    width: 100%;
+    position: absolute;
+    bottom: 10%;
+    text-align: center;
+  }
+}
+
+.pseudoBody.page2{
+  background: linear-gradient(to bottom, #BE0F49 30%, #921EB8 70%) no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  #myLogoContainer{
+    width: 40%;
+    height: 10%;
+  }
+
+  .enlarging {
+    animation: enlarging 1s forwards;
+  }
+
+  @keyframes enlarging {
+    100%{
+      transform: scale(120);
+    }
+  }
+
+  svg {
+    background: url(#MyGradient);
+  }
+
+  .path {
+    fill: transparent;
+  }
+
+  .path {
+    stroke-dasharray: 3000;
+    stroke-dashoffset: 3000;
+    stroke-width: 5;
+    animation: dash 4s linear;
+    animation-fill-mode: forwards;
+    stroke: #fff;
+  }
+
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 0;
+      fill: url(#MyGradient);
+    }
+  }
+
+  .fill_letter_none {
+    fill: transparent;
+  }
+}
+
+.pseudoBody.page3{
+  .example {
+    /*text-align: center;*/
+
+    margin : 10% 15%;
+  }
+
+  .page {
+    width: 70vw;
+    height: 60vh;
+    border-radius: 2px;
+    display: flex;
+    flex-direction : column;
+    justify-content: space-between;
+  }
+
+  .page .page_content{
+    width: 70vw;
+    height: 350px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .etapes_titles {
+    font-size : 1.6em;
+    color: rgb(197, 29, 29);
+    font-weight: bold;
+    line-height : 0%;
+  }
+  .page .point{
+    text-align : center;
+  }
+  .deco {
+    width: 45%;
+  }
+  .deco img{
+    height: 100%;
+  }
+
+  #gif{
+    width : 30%;
+    padding-right: 30%;
+  }
+  .text{
+    width : 45%;
+  }
+  .page:nth-child(1) {
+    background-image: url('http://www.lorempixum.com/300/100/?1');
+  }
+  .page:nth-child(2) {
+    background-image: url('http://www.lorempixum.com/300/100/?2');
+  }
+  .page:nth-child(3) {
+    background-image: url('http://www.lorempixum.com/300/100/?3');
+  }
+  .page:nth-child(4) {
+    background-image: url('http://www.lorempixum.com/300/100/?4');
+  }
+  .slider { overflow: hidden; }
+  .slider .content { position: relative; }
+  .slider .content .page { float: left; }
+}
+
+.pseudoBody.page4{
+  img{
+    width: 100%;
+    height:400%;
+  }
+}
+
+.pseudoBody.page5{
+  margin-top: 40px;
+  #title{
+    text-align: center;
+    font-family: 'gotham';
+    color: #7bb8f1;
+  }
+
+  .para p{
+    width: 100%;
+    margin-left: 29%;
+    width: 43%;
+    font-family: 'gotham';
+  }
+
+  .img{
+    width: 450px;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .color{
+    color: #7BB8f1;
+  }
+  .div-img{
+    text-align: center;
+  }
+}

@@ -1,2 +1,4 @@
 .idea
-notToInclude
+.sass-cache
+style.css.map
+*.zip
