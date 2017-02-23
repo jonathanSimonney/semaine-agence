@@ -490,30 +490,9 @@ h2{
 }
 
 .pseudoBody.page5{
-  margin-top: 40px;
-  #title{
-    text-align: center;
-    font-family: 'gotham';
-    color: #7bb8f1;
-  }
-
-  .para p{
-    width: 100%;
-    margin-left: 29%;
-    width: 43%;
-    font-family: 'gotham';
-  }
-
-  .img{
-    width: 450px;
-    text-align: center;
-    display: inline-block;
-  }
-
-  .color{
-    color: #7BB8f1;
-  }
-  .div-img{
-    text-align: center;
-  }
+  width:100vw;
+  height:100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,5 +1,5 @@
 function formatString(string){
-    if (string.search(/./) === -1) {
+    if (string.search(/\S/) === -1) {
         string =  '';
     }else{
         string = string.replace('&','&amp;');
@@ -89,6 +89,14 @@ function loadPage5(){
     $('.pseudoBody')[0].className = 'pseudoBody page5';
     fillThings('assets/views/page5.html', $('.pseudoBody')[0], function(){
         addHead();
+        $('form')[0].onsubmit = function(event){
+            var userString = formatString($('#name')[0].value);
+            if ( userString !== ''){
+                sessionStorage['username'] = userString;
+                $('#usernameHere').html(sessionStorage['username']);
+            }
+            return false;
+        };
     })
 }
 
