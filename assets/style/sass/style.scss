@@ -1,10 +1,17 @@
 $menuWidth : 82%;
-$menuHeight: 7vh;
+$menuHeight: 14vh;
 $logoWidth : 13vw;
 $menuBackgroundColor: #3c3c3c;
 $menuColor:white;
 $siteColor:#be0f49;
 $comptaBgColor: #f1f1f1;
+
+@font-face chosenFontFace{
+  src: url("font/Questrial-Regular.otf"); }
+
+*{
+  font-family:chosenFontFace;
+}
 
 @mixin evenlySpacedContent($direction){
   display:flex;
@@ -18,26 +25,25 @@ $comptaBgColor: #f1f1f1;
   justify-content:center;
 }
 
-@font-face {
-  font-family: 'gotham';
-  src: url('GOTHAM-LIGHT_0.OTF');
-
+@mixin head(){
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:$menuHeight;
+  background-color: $menuBackgroundColor;
 }
 
-@font-face {
-  font-family: 'gotham';
-  src: url('GOTHAM-THIN.TTF');
-
+.noOverflow{
+  overflow: hidden;
 }
 
 body {
   margin: 0;
   overflow-x: hidden;
   background-color: white;
-  padding: 0;
   width: 100vw;
   height: 100vh;
-  font-family: Roboto;
 }
 
 .pseudoBody{
@@ -52,16 +58,34 @@ body {
   color: $siteColor;
 }
 
+nav.form{
+  @include head();
+  padding-bottom:5vh;
+
+  form{
+    width:100%;
+    height:100%;
+    margin:0;
+  }
+  fieldset{
+    border:0;
+    *{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    &>input{
+      margin:auto;
+    }
+  }
+}
+
 .menu{
-  position: fixed;
-  top:0;
-  left:0;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width:100%;
-  height:$menuHeight;
-  background-color: $menuBackgroundColor;
+  @include head();
 
   &>div{
     width:$menuWidth;
@@ -349,6 +373,7 @@ h2{
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 
   #myLogoContainer{
     width: 40%;

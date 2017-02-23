@@ -1,15 +1,41 @@
-function addMenu(){
-    if ($('nav')[0] === undefined){
-        fillThings('assets/views/menu.html', $('body')[0], function (){}, false);
+function formatString(string){
+    if (string.search(/./) === -1) {
+        string =  '';
+    }else{
+        string = string.replace('&','&amp;');
+        string = string.replace(/</g,'&lt;');
+    }
 
-        $('a').each(
-            $(this).click(function(event){
-                event.preventDefault();
-                if (!isNaN(event.target.className) && event.target.className != undefined && event.target.className != ''){
-                    window["loadPage"+event.target.className]();
-                }
-            })
-        );
+    return string;
+}
+
+function addMenu(){
+    fillThings('assets/views/menu.html', $('body')[0], function (){
+        $('a').click(function(event) {
+            event.preventDefault();
+            if (!isNaN(event.target.className) && event.target.className != undefined && event.target.className != '') {
+                window["loadPage" + event.target.className]();
+            }
+        });
+        $('#usernameHere').html(sessionStorage['username']);
+    }, false);
+}
+
+function addFormConnect() {
+    fillThings('assets/views/formConnect.html', $('body')[0], function (){
+        //link onsubmit event
+    }, false);
+}
+
+function addHead(){
+    if ($('nav')[0] === undefined){
+        if (sessionStorage['username'] !== undefined){
+            if (formatString(sessionStorage['username']) !== ''){
+                addMenu();
+                return 'menu added';
+            }
+        }
+        addFormConnect();
     }
 }
 
@@ -23,6 +49,7 @@ function loadPage1(){
     fillThings('assets/views/page1.html',$('body'), function(){
         loadPage();
         $('.pseudoBody')[0].className = 'pseudoBody page1';
+        $('body').addClass('noOverflow');
     });
     suppressMenu();
 }
@@ -33,9 +60,10 @@ function loadPage2(){
 
     fillThings('assets/views/page2.html', $('.pseudoBody')[0], function(){
         fillThings('assets/style/images/logo.svg', $('#myLogoContainer')[0], function(){
-            document.querySelector('#myLogo').addEventListener('animationend', function(e){
+            $('#myLogo')[0].addEventListener('animationend', function(e){
                 testFunction(this);
             });
+            $('body').addClass('noOverflow');
         });
     });
 }
@@ -45,21 +73,22 @@ function loadPage3(){
 
     fillThings('assets/views/page3.html', $('.pseudoBody')[0], function(){
         createRandomNote(4, $('.pseudoBody')[0]);
-        addMenu();
+        addHead();
     });
+    $('body').removeClass('noOverflow');
 }
 
 function loadPage4(){
     $('.pseudoBody')[0].className = 'pseudoBody page4';
     fillThings('assets/views/page4.html', $('.pseudoBody')[0], function(){
-        addMenu();
+        addHead();
     })
 }
 
 function loadPage5(){
     $('.pseudoBody')[0].className = 'pseudoBody page5';
     fillThings('assets/views/page5.html', $('.pseudoBody')[0], function(){
-        addMenu();
+        addHead();
     })
 }
 
@@ -85,9 +114,12 @@ function createRandomNote(number, parentElement){
         }
 
         $(noteContainer).html('<i class="fa fa-music" aria-hidden="true"></i>');
+        /*console.log($(parentElement));
+        console.log($(parentElement).width());
+        console.log($(parentElement).height());*/
         $(noteContainer).css({
-            top : getRandomNumberInLength($(parentElement).height()),
-            left : getRandomNumberInLength($(parentElement).width())
+            left : getRandomNumberInLength($(parentElement).width()),//$(parentElement).width()
+            top : getRandomNumberInLength($(parentElement).height())//$(parentElement).height()
         });
 
         parentElement.appendChild(noteContainer);
@@ -125,19 +157,22 @@ function fillThings(url, container, additionalInstructions, removeContent) {
     $(function() {
         $.ajax({ type: 'GET',
             url: url,
-            dataType: 'text',
-            success : function(butWhy)
+            dataType: 'html',
+            async : true,
+            success : function(text)
             {
-                console.log(url, butWhy);
                 if (removeContent != false){
-                    $(container).html(butWhy);
+                    $(container).html(text);
                 }else{
-                    $(container).html($(container).html()+butWhy);
+                    $(container).html($(container).html()+text);
                 }
 
                 if (additionalInstructions !== undefined){
                     additionalInstructions();
                 }
+            },
+            fail : function (text) {
+                console.log(text);
             }
         });
     });

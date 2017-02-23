@@ -1,17 +1,17 @@
-@font-face {
-  font-family: 'gotham';
-  src: url("GOTHAM-LIGHT_0.OTF"); }
-@font-face {
-  font-family: 'gotham';
-  src: url("GOTHAM-THIN.TTF"); }
+@font-face chosenFontFace {
+  src: url("font/Questrial-Regular.otf"); }
+* {
+  font-family: chosenFontFace; }
+
+.noOverflow {
+  overflow: hidden; }
+
 body {
   margin: 0;
   overflow-x: hidden;
   background-color: white;
-  padding: 0;
   width: 100vw;
-  height: 100vh;
-  font-family: Roboto; }
+  height: 100vh; }
 
 .pseudoBody {
   display: -webkit-box;
@@ -23,15 +23,36 @@ body {
 .colored {
   color: #be0f49; }
 
-.menu {
+nav.form {
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 14vh;
+  background-color: #3c3c3c;
+  padding-bottom: 5vh; }
+  nav.form form {
+    width: 100%;
+    height: 100%;
+    margin: 0; }
+  nav.form fieldset {
+    border: 0; }
+    nav.form fieldset * {
+      display: flex;
+      flex-direction: row;
+      justify-content: center; }
+    nav.form fieldset > input {
+      margin: auto; }
+
+.menu {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 7vh;
+  height: 14vh;
   background-color: #3c3c3c; }
   .menu > div {
     width: 82%;
@@ -252,7 +273,8 @@ h2 {
   background: linear-gradient(to bottom, #BE0F49 30%, #921EB8 70%) no-repeat;
   display: flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  overflow: hidden; }
   .pseudoBody.page2 #myLogoContainer {
     width: 40%;
     height: 10%; }
