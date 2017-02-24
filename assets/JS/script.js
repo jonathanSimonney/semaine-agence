@@ -2,7 +2,7 @@ function formatString(string){
     if (string.search(/\S/) === -1) {
         string =  '';
     }else{
-        string = string.replace('&','&amp;');
+        string = string.replace('/&/g','&amp;');
         string = string.replace(/</g,'&lt;');
     }
 
@@ -10,36 +10,58 @@ function formatString(string){
 }
 
 function addMenu(){
-    fillThings('assets/views/menu.html', $('body')[0], function (){
+    console.log($('nav')[0]);
+    fillThings('assets/views/menu.html', $('body'), function (){
+        $('#usernameHere').html(sessionStorage['username']);
         $('a').click(function(event) {
             event.preventDefault();
             if (!isNaN(event.target.className) && event.target.className != undefined && event.target.className != '') {
                 window["loadPage" + event.target.className]();
             }
         });
-        $('#usernameHere').html(sessionStorage['username']);
     }, false);
 }
 
 function addFormConnect() {
-    fillThings('assets/views/formConnect.html', $('body')[0], function (){
-        //link onsubmit event
+    fillThings('assets/views/formConnect.html', $('body'), function (){
+        $('form')[0].onsubmit = function(event){
+            var userString = formatString($('#name')[0].value);
+            if ( userString !== ''){
+                sessionStorage.setItem('username', userString);
+                suppressHead();
+                $('#usernameHere').html(sessionStorage['username']);
+                loadPage3();
+            }
+            return false;
+        };
     }, false);
+}
+
+function loadPageWithHeader(funcToLoadPage){
+    if (addHead() === 'menu'){
+        funcToLoadPage();
+    }else{
+        $('.pseudoBody')[0].className = 'pseudoBody';
+        $('.pseudoBody').html('');
+    }
 }
 
 function addHead(){
     if ($('nav')[0] === undefined){
         if (sessionStorage['username'] !== undefined){
             if (formatString(sessionStorage['username']) !== ''){
+                console.log('new menu');
                 addMenu();
-                return 'menu added';
+                return 'menu';
             }
         }
         addFormConnect();
+        return 'connect';
     }
+    return 'menu';
 }
 
-function suppressMenu(){
+function suppressHead(){
     if ($('nav')[0] != undefined){
         $('nav')[0].parentNode.removeChild($('nav')[0]);
     }
@@ -51,14 +73,14 @@ function loadPage1(){
         $('.pseudoBody')[0].className = 'pseudoBody page1';
         $('body').addClass('noOverflow');
     });
-    suppressMenu();
+    suppressHead();
 }
 
 function loadPage2(){
     $('.pseudoBody')[0].className = 'pseudoBody page2';
-    fillThings('assets/views/videoTag.html', $('.audioContainer')[0]);
+    fillThings('assets/views/videoTag.html', $('.audioContainer'));
 
-    fillThings('assets/views/page2.html', $('.pseudoBody')[0], function(){
+    fillThings('assets/views/page2.html', $('.pseudoBody'), function(){
         fillThings('assets/style/images/logo.svg', $('#myLogoContainer')[0], function(){
             $('#myLogo')[0].addEventListener('animationend', function(e){
                 testFunction(this);
@@ -69,35 +91,50 @@ function loadPage2(){
 }
 
 function loadPage3(){
-    $('.pseudoBody')[0].className = 'pseudoBody page3';
+    loadPageWithHeader(function() {
+        $('.pseudoBody')[0].className = 'pseudoBody page3';
 
-    fillThings('assets/views/page3.html', $('.pseudoBody')[0], function(){
-        createRandomNote(4, $('.pseudoBody')[0]);
-        addHead();
+        fillThings('assets/views/page3.html', $('.pseudoBody'), function(){
+            //createRandomNote(4, $('.pseudoBody')[0]);
+        });
+        $('body').removeClass('noOverflow');
     });
-    $('body').removeClass('noOverflow');
+}
+
+function disconnect(){
+    sessionStorage.clear();
+    suppressHead();
+    loadPage3();
 }
 
 function loadPage4(){
-    $('.pseudoBody')[0].className = 'pseudoBody page4';
-    fillThings('assets/views/page4.html', $('.pseudoBody')[0], function(){
-        addHead();
-    })
+    loadPageWithHeader(function () {
+        $('.pseudoBody')[0].className = 'pseudoBody page4';
+        fillThings('assets/views/page4.html', $('.pseudoBody'), function(){
+            alert('Sorry. This page does the worst thing you could imagine. You\'d better get out.');
+            setTimeout(function () {
+                disconnect();
+            }, 1000)
+        });
+    });
 }
 
 function loadPage5(){
-    $('.pseudoBody')[0].className = 'pseudoBody page5';
-    fillThings('assets/views/page5.html', $('.pseudoBody')[0], function(){
-        addHead();
-        $('form')[0].onsubmit = function(event){
-            var userString = formatString($('#name')[0].value);
-            if ( userString !== ''){
-                sessionStorage['username'] = userString;
-                $('#usernameHere').html(sessionStorage['username']);
-            }
-            return false;
-        };
-    })
+    loadPageWithHeader(function () {
+        $('.pseudoBody')[0].className = 'pseudoBody page5';
+        fillThings('assets/views/page5.html', $('.pseudoBody'), function(){
+            $('#name')[0].value = sessionStorage['username'];
+
+            $('form')[0].onsubmit = function(event){
+                var userString = formatString($('#name')[0].value);
+                if ( userString !== ''){
+                    sessionStorage['username'] = userString;
+                    $('#usernameHere').html(sessionStorage['username']);
+                }
+                return false;
+            };
+        });
+    });
 }
 
 function load(event){
@@ -122,9 +159,6 @@ function createRandomNote(number, parentElement){
         }
 
         $(noteContainer).html('<i class="fa fa-music" aria-hidden="true"></i>');
-        /*console.log($(parentElement));
-        console.log($(parentElement).width());
-        console.log($(parentElement).height());*/
         $(noteContainer).css({
             left : getRandomNumberInLength($(parentElement).width()),//$(parentElement).width()
             top : getRandomNumberInLength($(parentElement).height())//$(parentElement).height()
@@ -167,8 +201,7 @@ function fillThings(url, container, additionalInstructions, removeContent) {
             url: url,
             dataType: 'html',
             async : true,
-            success : function(text)
-            {
+            success : function(text){
                 if (removeContent != false){
                     $(container).html(text);
                 }else{
@@ -180,7 +213,7 @@ function fillThings(url, container, additionalInstructions, removeContent) {
                 }
             },
             fail : function (text) {
-                console.log(text);
+                console.log('failure', text);
             }
         });
     });

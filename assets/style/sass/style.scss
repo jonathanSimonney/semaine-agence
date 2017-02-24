@@ -69,6 +69,12 @@ nav.form{
   }
   fieldset{
     border:0;
+    padding:0;
+    margin-top:2vh;
+
+    div{
+      margin-bottom:2vh;
+    }
     *{
       display: flex;
       flex-direction: row;
