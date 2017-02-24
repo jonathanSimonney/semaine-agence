@@ -10,7 +10,6 @@ function formatString(string){
 }
 
 function addMenu(){
-    console.log($('nav')[0]);
     fillThings('assets/views/menu.html', $('body'), function (){
         $('#usernameHere').html(sessionStorage['username']);
         $('a').click(function(event) {
@@ -19,6 +18,7 @@ function addMenu(){
                 window["loadPage" + event.target.className]();
             }
         });
+        $('a#concept').click();
     }, false);
 }
 
@@ -29,8 +29,7 @@ function addFormConnect() {
             if ( userString !== ''){
                 sessionStorage.setItem('username', userString);
                 suppressHead();
-                $('#usernameHere').html(sessionStorage['username']);
-                loadPage3();
+                addMenu();
             }
             return false;
         };
@@ -50,7 +49,6 @@ function addHead(){
     if ($('nav')[0] === undefined){
         if (sessionStorage['username'] !== undefined){
             if (formatString(sessionStorage['username']) !== ''){
-                console.log('new menu');
                 addMenu();
                 return 'menu';
             }
@@ -95,7 +93,7 @@ function loadPage3(){
         $('.pseudoBody')[0].className = 'pseudoBody page3';
 
         fillThings('assets/views/page3.html', $('.pseudoBody'), function(){
-            //createRandomNote(4, $('.pseudoBody')[0]);
+            createRandomNote(4, $('.pseudoBody')[0]);
         });
         $('body').removeClass('noOverflow');
     });
